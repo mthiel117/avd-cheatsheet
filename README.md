@@ -33,6 +33,24 @@ DC1:
         DC1_LEAFS:
 ```
 
+## Connecting to CVP On-Prem
+
+``` yaml
+# Set these variables for the CVP host in your inventory.yml
+
+ansible_httpapi_host: 10.83.28.164
+ansible_host: 10.83.28.164
+ansible_user: ansible
+ansible_password: ansible
+ansible_connection: httpapi
+ansible_httpapi_use_ssl: True
+ansible_httpapi_validate_certs: False
+ansible_network_os: eos
+ansible_httpapi_port: 443
+# Configuration to get Virtual Env information
+ansible_python_interpreter: $(which python3)
+```
+
 ## Connecting to CVaaS
 
 ``` yaml
