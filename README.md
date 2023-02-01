@@ -4,8 +4,8 @@ Common things you need to set for AVD arte shown below.  Also, there are 2 examp
 
 ## Requirements
 
-- Install Python 3.8 or later
-- Install ansible-core from 2.11.3 to 2.14.x excluding 2.12.0 to 2.12.5 and 2.13.0
+- Install [Python](https://www.python.org/downloads/) 3.8 or later
+- Install [ansible-core](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) from 2.11.3 to 2.14.x excluding 2.12.0 to 2.12.5 and 2.13.0
 
 ## Install AVD
 
