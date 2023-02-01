@@ -2,7 +2,39 @@
 
 Common things you need to set for AVD arte shown below.  Also, there are 2 example inventories (L2LS Campus and L3LS EVPN-VXLAN) with full data model (group_vars) included.
 
-## Common Inventory
+## Install AVD
+
+``` shell
+# Latest version
+ansible-galaxy collection install arista.avd
+
+# Specific version
+ansible-galaxy collection install arista.avd:==3.6.0
+
+# Development Branch
+ansible-galaxy collection install git+https://github.com/aristanetworks/ansible-avd.git#/ansible_collections/arista/avd/,devel
+```
+
+### Install Python Requirements
+
+``` shell
+export ARISTA_AVD_DIR=$(ansible-galaxy collection list arista.avd --format yaml | head -1 | cut -d: -f1)
+pip3 install -r ${ARISTA_AVD_DIR}/arista/avd/requirements.txt
+```
+
+## Typical ansible.cfg
+
+``` shell
+[defaults]
+inventory=inventory.yml
+deprecation_warnings = False
+host_key_checking = False
+gathering = explicit
+retry_files_enabled = False
+jinja2_extensions =  jinja2.ext.loopcontrols,jinja2.ext.do,jinja2.ext.i18n
+```
+
+## Common inventory.yml
 
 ``` yaml
 ---
@@ -215,7 +247,6 @@ port_profiles:
 
 Define what switches and ports use a Port Profile.  Regex matching on the switches is possible.
 Switch ports expansion examples can be found [here](https://avd.sh/en/stable/plugins/index.html#range_expand-filter).
-
 
 ``` yaml
 network_ports:
