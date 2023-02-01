@@ -6,31 +6,31 @@ Common things you need to set for AVD.
 
 ``` yaml
 ---
-CAMPUS:
+DC1:
   children:
     CVP:
       hosts:
         cvp:
-    CAMPUS_FABRIC:
+    DC1_FABRIC:
       children:
-        CAMPUS_SPINES:
+        DC1_SPINES:
           hosts:
             spine1:
             spine2:
-        CAMPUS_LEAFS:
+        DC1_LEAFS:
           hosts:
             leaf1:
             leaf2:
             leaf3:
             leaf4:
-    CAMPUS_FABRIC_SERVICES:
+    DC1_FABRIC_SERVICES:
       children:
-        CAMPUS_SPINES:
-        CAMPUS_LEAFS:
-    CAMPUS_FABRIC_PORTS:
+        DC1_SPINES:
+        DC1_LEAFS:
+    DC1_FABRIC_PORTS:
       children:
-        CAMPUS_SPINES:
-        CAMPUS_LEAFS:
+        DC1_SPINES:
+        DC1_LEAFS:
 ```
 
 ## Connecting to CVaaS
@@ -51,7 +51,7 @@ ansible_network_os: eos
 ``` yaml
 ---
 - name: Build Switch configuration
-  hosts: CAMPUS_FABRIC
+  hosts: DC1_FABRIC
   gather_facts: false
   tasks:
 
@@ -69,7 +69,7 @@ ansible_network_os: eos
 ``` yaml
 ---
 - name: Deploy Switch configuration
-  hosts: ATD_FABRIC
+  hosts: DC1_FABRIC
   gather_facts: false
   tasks:
 
@@ -124,3 +124,8 @@ daemon_terminattr:
   # from CloudVision are applied directly to the CLI without authorization
   disable_aaa: true
 ```
+
+## Port Profile
+
+## Network Ports
+
