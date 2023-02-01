@@ -1,6 +1,6 @@
 # AVD Cheatsheet
 
-Common things you need to set for AVD.
+Common things you need to set for AVD arte shown below.  Also, there are 2 example inventories (L2LS Campus and L3LS EVPN-VXLAN) with full data model (group_vars) included.
 
 ## Common Inventory
 
@@ -213,4 +213,22 @@ network_ports:
       - Ethernet1-48
     description: IDF2 Standard Port
     profile: PP-IDF2
+```
+
+## Makefile
+
+Sample Makefile with entries to run playbooks
+
+``` shell
+.PHONY: help
+help: ## Display help message
+	@grep -E '^[0-9a-zA-Z_-]+\.*[0-9a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+
+.PHONY: campus
+campus: ## Build Campus Configs
+	ansible-playbook -i inventories/l2ls-campus/inventory.yml playbooks/campus.yml
+
+.PHONY: evpn
+evpn: ## Build Campus Configs
+	ansible-playbook -i inventories/l3ls-evpn-vxlan/inventory.yml playbooks/evpn.yml
 ```
