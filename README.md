@@ -32,7 +32,7 @@ DC1:
         DC1_SPINES:
         DC1_LEAFS:
 ```
-test
+
 ## Connecting to CVaaS
 
 ``` yaml
