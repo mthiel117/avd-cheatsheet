@@ -265,3 +265,10 @@ campus: ## Build Campus Configs
 evpn: ## Build Campus Configs
 	ansible-playbook -i inventories/l3ls-evpn-vxlan/inventory.yml playbooks/evpn.yml
 ```
+
+Usage:
+
+``` shell
+make campus
+make evpn
+```
