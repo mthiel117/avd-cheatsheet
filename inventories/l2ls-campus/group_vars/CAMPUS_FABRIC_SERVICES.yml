@@ -1,0 +1,54 @@
+---
+tenants:
+  MY_FABRIC:
+    vrfs:
+      default:
+        svis:
+          10:
+            name: 'Ten'
+            tags: ["10"]
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.10.10.1
+            nodes:
+              spine1:
+                ip_address: 10.10.10.2/24
+              spine2:
+                ip_address: 10.10.10.3/24
+          15:
+            name: 'Fifteen'
+            tags: ["15"]
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.15.15.1
+            nodes:
+              spine1:
+                ip_address: 10.15.15.2/24
+              spine2:
+                ip_address: 10.15.15.3/24
+          20:
+            name: 'Twenty'
+            tags: ["20"]
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.20.20.1
+            nodes:
+              spine1:
+                ip_address: 10.20.20.2/24
+              spine2:
+                ip_address: 10.20.20.3/24
+          25:
+            name: 'TwentyFive'
+            tags: ["25"]
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.25.25.1
+            nodes:
+              spine1:
+                ip_address: 10.25.25.2/24
+              spine2:
+                ip_address: 10.25.25.3/24
+    l2vlans:
+      999:
+        name: 'Blackhole'
+        tags: ["999"]

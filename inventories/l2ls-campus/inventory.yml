@@ -1,0 +1,26 @@
+---
+CAMPUS:
+  children:
+    CVP:
+      hosts:
+        cvp:
+    CAMPUS_FABRIC:
+      children:
+        CAMPUS_SPINES:
+          hosts:
+            spine1:
+            spine2:
+        CAMPUS_LEAFS:
+          hosts:
+            leaf1:
+            leaf2:
+            leaf3:
+            leaf4:
+    CAMPUS_FABRIC_SERVICES:
+      children:
+        CAMPUS_SPINES:
+        CAMPUS_LEAFS:
+    CAMPUS_FABRIC_PORTS:
+      children:
+        CAMPUS_SPINES:
+        CAMPUS_LEAFS:

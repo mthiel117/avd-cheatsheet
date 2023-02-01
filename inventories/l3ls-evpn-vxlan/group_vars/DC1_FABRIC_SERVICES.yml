@@ -1,0 +1,22 @@
+---
+tenants:
+  MY_FABRIC:
+    mac_vrf_vni_base: 10000
+    vrfs:
+      Red:
+        vrf_vni: 10
+        svis:
+          10:
+            name: 'Ten'
+            tags: ["10"]
+            enabled: true
+            ip_address_virtual: 10.10.10.1/24
+          20:
+            name: 'Twenty'
+            tags: ["20"]
+            enabled: true
+            ip_address_virtual: 10.20.20.1/24
+    l2vlans:
+      999:
+        name: Blackhole
+        tags: ["999"]

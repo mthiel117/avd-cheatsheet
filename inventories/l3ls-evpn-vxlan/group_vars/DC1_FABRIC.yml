@@ -1,0 +1,73 @@
+---
+fabric_name: DC1_FABRIC
+
+# Set Design Type to L2
+design:
+  type: l3ls-evpn
+
+# Spine Switches
+spine:
+  defaults:
+    platform: vEOS
+    bgp_as: 65000
+    bgp_defaults:
+      - no bgp default ipv4-unicast
+      - distance bgp 20 200 200
+      - graceful-restart restart-time 300
+      - graceful-restart
+    loopback_ipv4_pool: 1.1.1.0/24
+  node_groups:
+    SPINES:
+      nodes:
+        spine1:
+          id: 1
+          mgmt_ip: 192.168.0.10/24
+        spine2:
+          id: 2
+          mgmt_ip: 192.168.0.11/24
+
+# IDF - Leaf Switches
+l3leaf:
+  defaults:
+    bgp_defaults:
+      - no bgp default ipv4-unicast
+      - distance bgp 20 200 200
+      - graceful-restart restart-time 300
+      - graceful-restart
+    platform: vEOS
+    loopback_ipv4_pool: 1.1.1.0/24
+    vtep_loopback_ipv4_pool: 2.2.2.0/24
+    uplink_ipv4_pool: 10.0.0.0/24
+    mlag_peer_ipv4_pool: 10.1.1.0/24
+    mlag_peer_l3_ipv4_pool: 10.2.2.0/24
+    virtual_router_mac_address: aa:aa:bb:bb:cc:cc
+    spanning_tree_mode: mstp
+    spanning_tree_priority: 16384
+    uplink_switches: [spine1, spine2]
+    uplink_interfaces: [Ethernet51, Ethernet52]
+    mlag_interfaces: [Ethernet49, Ethernet50]
+  node_groups:
+    IDF1:
+      bgp_as: 65100
+      mlag: true
+      nodes:
+        leaf1:
+          id: 3
+          mgmt_ip: 192.168.0.12/24
+          uplink_switch_interfaces: [Ethernet1, Ethernet1]
+        leaf2:
+          id: 4
+          mgmt_ip: 192.168.0.13/24
+          uplink_switch_interfaces: [Ethernet2, Ethernet2]
+    IDF2:
+      bgp_as: 65200
+      mlag: true
+      nodes:
+        leaf3:
+          id: 5
+          mgmt_ip: 192.168.0.14/24
+          uplink_switch_interfaces: [Ethernet3, Ethernet3]
+        leaf4:
+          id: 6
+          mgmt_ip: 192.168.0.15/24
+          uplink_switch_interfaces: [Ethernet4, Ethernet4]

@@ -1,0 +1,26 @@
+---
+DC1:
+  children:
+    CVP:
+      hosts:
+        cvp:
+    DC1_FABRIC:
+      children:
+        DC1_SPINES:
+          hosts:
+            spine1:
+            spine2:
+        DC1_LEAFS:
+          hosts:
+            leaf1:
+            leaf2:
+            leaf3:
+            leaf4:
+    DC1_FABRIC_SERVICES:
+      children:
+        DC1_SPINES:
+        DC1_LEAFS:
+    DC1_FABRIC_PORTS:
+      children:
+        DC1_SPINES:
+        DC1_LEAFS:
