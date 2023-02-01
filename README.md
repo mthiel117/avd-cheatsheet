@@ -37,6 +37,19 @@ DC1:
 
 Ansible variables needed to connect to your switches should you intend to deploy configs via eAPI.  Typically apply these to an ansible group that applies to all switches.
 
+First you need to enable API access on the switches.
+
+``` shell
+management api http-commands
+   no shutdown
+   !
+   vrf MGMT
+      no shutdown
+!
+```
+
+Then set these variables.
+
 ``` yaml
 ansible_connection: ansible.netcommon.httpapi
 # Specifies that we are indeed using Arista EOS
