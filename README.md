@@ -145,5 +145,72 @@ daemon_terminattr:
 
 ## Port Profile
 
+Define Port Profiles to be used by Network Ports.
+
+``` yaml
+port_profiles:
+  PP-IDF1:
+    mode: "trunk phone"
+    spanning_tree_portfast: edge
+    spanning_tree_bpduguard: enabled
+    dot1x:
+      port_control: force-authorized # For Lab without RADIUS NAC server
+      reauthentication: true
+      pae:
+        mode: authenticator
+      host_mode:
+        mode: multi-host
+        multi_host_authenticated: true
+      mac_based_authentication:
+        enabled: true
+      authentication_failure:
+        action: allow
+        allow_vlan: 100
+      timeout:
+        reauth_period: server
+        tx_period: 3
+      reauthorization_request_limit: 3
+
+  PP-IDF2:
+    mode: "access"
+    vlans: 20
+    spanning_tree_portfast: edge
+    spanning_tree_bpduguard: enabled
+```
+
 ## Network Ports
 
+Define what switches and ports use a Port Profile.  Regex matching on the switches is possible.
+Switch ports expansion examples can be found [here](https://avd.sh/en/stable/plugins/index.html#range_expand-filter).
+
+
+``` yaml
+network_ports:
+
+  ################################################################
+  # IDF1 - 802.1x Enabled
+  ################################################################
+
+  - switches:
+      - LEAF[12] # regex match LEAF1A & LEAF1B
+    switch_ports:
+      - Ethernet1-48
+    description: IDF1 Standard Port
+    profile: PP-IDF1
+    native_vlan: 10
+    structured_config:
+      phone:
+        trunk: untagged
+        vlan: 15
+
+  ################################################################
+  # IDF2 - Standard Access Ports
+  ################################################################
+
+  - switches:
+      - LEAF[34]
+    switch_ports:
+      - Ethernet1-48
+    description: IDF2 Standard Port
+    profile: PP-IDF2
+```
