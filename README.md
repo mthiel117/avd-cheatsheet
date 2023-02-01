@@ -33,6 +33,26 @@ DC1:
         DC1_LEAFS:
 ```
 
+## Connecting to your switches
+
+Ansible variables needed to connect to your switches should you intend to deploy configs via eAPI.  Typically apply these to an ansible group that applies to all switches.
+
+``` yaml
+ansible_connection: ansible.netcommon.httpapi
+# Specifies that we are indeed using Arista EOS
+ansible_network_os: arista.eos.eos
+# This user/password must exist on the switches to enable Ansible access
+ansible_user: admin
+ansible_password: admin
+# User escalation (to enter enable mode)
+ansible_become: true
+ansible_become_method: enable
+# Use SSL (HTTPS)
+ansible_httpapi_use_ssl: true
+# Do not try to validate certs
+ansible_httpapi_validate_certs: false
+```
+
 ## Connecting to CVP On-Prem
 
 ``` yaml
