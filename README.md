@@ -2,6 +2,11 @@
 
 Common things you need to set for AVD arte shown below.  Also, there are 2 example inventories (L2LS Campus and L3LS EVPN-VXLAN) with full data model (group_vars) included.
 
+## Requirements
+
+- Install Python 3.8 or later
+- Install ansible-core from 2.11.3 to 2.14.x excluding 2.12.0 to 2.12.5 and 2.13.0
+
 ## Install AVD
 
 ``` shell
