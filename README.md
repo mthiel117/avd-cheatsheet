@@ -77,6 +77,38 @@ DC1:
         DC1_LEAFS:
 ```
 
+## Common Encryption Password
+
+Typically we like to use common BGP peer passwords.  This can be done by enabling the following EOS Cli commands:
+
+``` config
+management security
+   password encryption-key common
+!
+```
+
+The data model to enable this:
+
+``` yaml
+management_security:
+  password:
+    encryption_key_common: true
+
+bgp_peer_groups:
+  ipv4_underlay_peers:
+    name: IPV4-UNDERLAY-PEERS
+    password: $1c$G8BQN0ezkiJOX2cuAYpsEA==
+  mlag_ipv4_underlay_peer:
+    name: MLAG-IPV4-UNDERLAY-PEER
+    password: $1c$G8BQN0ezkiJOX2cuAYpsEA==
+  evpn_overlay_peers:
+    name: EVPN-OVERLAY-LOCAL-PEERS
+    password: $1c$G8BQN0ezkiJOX2cuAYpsEA==
+  evpn_overlay_core:
+    name: EVPN-OVERLAY-REMOTE-PEERS
+    password: $1c$G8BQN0ezkiJOX2cuAYpsEA==
+```
+
 ## Connecting to your switches
 
 Ansible variables needed to connect to your switches should you intend to deploy configs via eAPI.  Typically apply these to an ansible group that applies to all switches.
